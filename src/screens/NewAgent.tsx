@@ -4,11 +4,13 @@ import {
 	CardContent,
 	CardHeader,
 	Paper,
+	Tooltip,
 	Typography
 } from "@mui/material";
 import { useEffect, useState } from "react";
 import Carousel from "react-material-ui-carousel";
 import { Faction } from "../definitions/factions";
+import { getTraitIcon } from "../utilities";
 
 function NewAgent() {
 	const [factions, setFactions] = useState<Faction[]>([]);
@@ -33,7 +35,7 @@ function NewAgent() {
 	return (
 		<Paper className="flex items-center justify-center">
 			<Typography variant="h1">Select your faction</Typography>
-			<Carousel>
+			<Carousel onChange={(index, previous) => index !== undefined ? setSelectedFaction(factions[index]) : setSelectedFaction(factions[previous !== undefined ? previous : 0])}>
 				{factions.map((faction) => (
 					<Card>
 						<CardHeader
@@ -53,12 +55,19 @@ function NewAgent() {
 						/>
 						<CardContent className="flex item-center justify-center">
 							{faction.traits.map((trait) => (
-								<></>
+								<Tooltip title={trait.description}>
+									{getTraitIcon(trait)}
+								</Tooltip>
 							))}
 						</CardContent>
 					</Card>
 				))}
 			</Carousel>
+			<Card>
+				<CardContent>
+					{selectedFaction?.description}
+				</CardContent>
+			</Card>
 		</Paper>
 	);
 }

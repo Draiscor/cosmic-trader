@@ -4,11 +4,12 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements } from 'react-router-dom';
+import NewAgent from './screens/NewAgent';
 
 const router = createBrowserRouter(
 	createRoutesFromElements(
 		<Route path="/" element={<App />}>
-			<Route path="new-agent" element={ } />
+			<Route path="new-agent" element={<NewAgent />} />
 		</Route>
 	)
 );
