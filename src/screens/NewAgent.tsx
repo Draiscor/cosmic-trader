@@ -35,7 +35,7 @@ function NewAgent() {
 	return (
 		<Paper className="flex items-center justify-center">
 			<Typography variant="h1">Select your faction</Typography>
-			<Carousel onChange={(index, previous) => index !== undefined ? setSelectedFaction(factions[index]) : setSelectedFaction(factions[previous !== undefined ? previous : 0])}>
+			<Carousel next={(index, previous) => typeof index === "number" ? setSelectedFaction(factions[index]) : setSelectedFaction(factions[typeof previous === "number" ? previous : 0])}>
 				{factions.map((faction) => (
 					<Card>
 						<CardHeader
