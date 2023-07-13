@@ -1,28 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { RouterProvider, createHashRouter } from 'react-router-dom';
-import App from './App';
-import './index.css';
-import reportWebVitals from './reportWebVitals';
-import NewAgent from './screens/NewAgent';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { RouterProvider, createHashRouter } from "react-router-dom";
+import App from "./App";
+import "./index.css";
+import reportWebVitals from "./reportWebVitals";
+import NewAgent from "./screens/NewAgent";
+import Logon from "./screens/Logon";
+import store from "./redux/store";
+import {Provider} from "react-redux";
 
 const router = createHashRouter([
 	{
 		path: "/",
-		element: <App />
-	},
-	{
-		path: "new-agent",
-		element: <NewAgent />
+		element: <App />,
+		children: [
+			{
+				path: "logon",
+				element: <Logon />
+			},
+			{
+				path: "new-agent",
+				element: <NewAgent />
+			}
+		]
 	}
 ]);
 
 const root = ReactDOM.createRoot(
-	document.getElementById('root') as HTMLElement
+	document.getElementById("root") as HTMLElement
 );
 root.render(
 	<React.StrictMode>
-		<RouterProvider router={router} />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
 	</React.StrictMode>
 );
 

@@ -22,6 +22,8 @@ import {
 import { useEffect, useState } from "react";
 import { Faction } from "../definitions/factions";
 import { getTraitIcon } from "../utilities";
+import { useAppDispatch } from "../hooks/redux";
+import { setTitle } from "../redux/titleSlice";
 
 function NewAgent() {
 	const [factions, setFactions] = useState<Faction[][]>([]);
@@ -32,6 +34,11 @@ function NewAgent() {
 	const [expandedTrait, setExpandedTrait] = useState<string>("");
 	const [username, setUsername] = useState<string>("");
 
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		dispatch(setTitle("New Agent"));
+	});
 	useEffect(() => {
 		function getFactions(requestedPage?: number) {
 			fetch(
@@ -66,19 +73,19 @@ function NewAgent() {
 	}, [setFactions]);
 
 	return (
-		<Paper className="flex flex-col items-center justify-center h-screen">
-			<Typography className="justify-self-start shrink-0" variant="h1">
-				Select your faction
-			</Typography>
+		<Paper className="flex flex-col items-center" sx={{ height: "94.5vh" }}>
+			<div className="justify-self-start shrink-0 mt-3">
+				<Typography variant="h5">Select your faction</Typography>
+			</div>
 			{factions && factions.length ? (
 				<div
 					className="grow w-screen flex flex-col justify-center items-center mb-2"
-					style={{ maxHeight: "80vh" }}
+					style={{ maxHeight: "94%" }}
 				>
 					<div className="flex justify-between items-center h-full w-full">
 						<div
 							className="grow grid grid-cols-2 gap-5 auto-cols-max auto-rows-max overflow-y-auto p-5"
-							style={{ maxHeight: "90%" }}
+							style={{ maxHeight: "95%" }}
 						>
 							{factions[selectedPage].map((faction, index) => (
 								<Card
@@ -137,7 +144,7 @@ function NewAgent() {
 							))}
 						</div>
 						{selectedFaction ? (
-							<Card className="justify-self-end shrink-0 w-1/4 h-5/6 m-5">
+							<Card className="justify-self-end shrink-0 w-1/4 h-full m-5">
 								<CardHeader
 									className={
 										selectedFaction.isRecruiting
@@ -163,10 +170,12 @@ function NewAgent() {
 										)
 									}
 								/>
-								<CardContent className="flex flex-col justify-evenly">
-									<Typography className="mb-2">
-										{selectedFaction.description}
-									</Typography>
+								<CardContent className="flex flex-col grow">
+									<div className="mb-2">
+										<Typography>
+											{selectedFaction.description}
+										</Typography>
+									</div>
 									<div className="mv-4 overflow-y-auto">
 										{selectedFaction.traits.map(trait => (
 											<Accordion
