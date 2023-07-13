@@ -34,7 +34,7 @@ function NewAgent() {
 	useEffect(() => {
 		function getFactions(requestedPage?: number) {
 			fetch(
-				`https://api.spacetraders.io/v2/factions${
+				`${process.env.REACT_APP_BASE_URL}/factions${
 					requestedPage ? `?page=${requestedPage}` : ""
 				}`
 			)
