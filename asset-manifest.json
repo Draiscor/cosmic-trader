@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/cosmic-trader/static/css/main.75d30888.css",
-    "main.js": "/cosmic-trader/static/js/main.b587b775.js",
+    "main.js": "/cosmic-trader/static/js/main.df2b90f1.js",
     "static/js/27.e9612921.chunk.js": "/cosmic-trader/static/js/27.e9612921.chunk.js",
     "index.html": "/cosmic-trader/index.html"
   },
   "entrypoints": [
     "static/css/main.75d30888.css",
-    "static/js/main.b587b775.js"
+    "static/js/main.df2b90f1.js"
   ]
 }
