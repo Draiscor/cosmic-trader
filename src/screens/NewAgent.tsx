@@ -9,6 +9,7 @@ import {
 	AccordionSummary,
 	Button,
 	Card,
+	CardActionArea,
 	CardActions,
 	CardContent,
 	CardHeader,
@@ -95,41 +96,43 @@ function NewAgent() {
 										)
 									}
 								>
-									<CardHeader
-										title={faction.name}
-										subheader={
-											faction.isRecruiting ? (
-												<Typography>
-													Recruiting{" "}
-													{
-														<CheckCircleOutline color="success" />
-													}
-												</Typography>
-											) : (
-												<Typography>
-													Not Recruiting{" "}
-													{
-														<CancelOutlined color="error" />
-													}
-												</Typography>
-											)
-										}
-									/>
-									<CardContent className="grid grid-cols-2 gap-2 place-items-center">
-										{faction.traits?.map(trait => (
-											<Tooltip
-												key={trait.symbol}
-												title={trait.description}
-											>
-												<div className="flex flex-col justify-center items-center m-1">
-													{getTraitIcon(trait)}
-													<Typography variant="body2">
-														{trait.name}
+									<CardActionArea>
+										<CardHeader
+											title={faction.name}
+											subheader={
+												faction.isRecruiting ? (
+													<Typography>
+														Recruiting{" "}
+														{
+															<CheckCircleOutline color="success" />
+														}
 													</Typography>
-												</div>
-											</Tooltip>
-										))}
-									</CardContent>
+												) : (
+													<Typography>
+														Not Recruiting{" "}
+														{
+															<CancelOutlined color="error" />
+														}
+													</Typography>
+												)
+											}
+										/>
+										<CardContent className="grid grid-cols-2 gap-2 place-items-center">
+											{faction.traits?.map(trait => (
+												<Tooltip
+													key={trait.symbol}
+													title={trait.description}
+												>
+													<div className="flex flex-col justify-center items-center m-1">
+														{getTraitIcon(trait)}
+														<Typography variant="body2">
+															{trait.name}
+														</Typography>
+													</div>
+												</Tooltip>
+											))}
+										</CardContent>
+									</CardActionArea>
 								</Card>
 							))}
 						</div>
