@@ -5,7 +5,7 @@ function App() {
 	const navigate = useNavigate();
 
 	return (
-		<div className="width-100 height-100 flex justify-center items-center">
+		<div className="flex w-full h-screen justify-center items-center">
 			<Button variant="contained" onClick={() => navigate("/new-agent")}>Create Agent</Button>
 		</div>
 	);
